@@ -14,24 +14,32 @@ int main() {
     bool ok = true;
 
     while(ok) {
-        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] > t[i]) {
+                s[i] = t[i];
+                vec.push_back(s);
+            } 
+
+            if (i == s.length() - 1) {
+                ok = false;
+            }
+        }
+    }
+
+    ok = true;
+
+    while(ok) {
 
         if (s == t) {
             ok = false;
             break;
         }
 
-        for (int i = 0; i < s.length(); i++) {
-            if (s[i] > t[i]) {
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s[i] < t[i]) {
                 s[i] = t[i];
                 vec.push_back(s);
-                count++;
-            } 
-        }
-
-        if (count == 0) {
-            vec.push_back(t);
-            ok = false;
+            }
         }
     }
 
